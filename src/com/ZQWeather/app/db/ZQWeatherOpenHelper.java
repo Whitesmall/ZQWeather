@@ -5,6 +5,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * 创建数据库
+ * @author Administrator
+ *
+ */
 public class ZQWeatherOpenHelper extends SQLiteOpenHelper {
 
 	
@@ -19,18 +24,19 @@ public class ZQWeatherOpenHelper extends SQLiteOpenHelper {
 	 * */
 	
 	public static final String CREATE_PROVINCE = "create table Province ("
-			+"id integer primary key autoincrement, "
-			+"province_name text,"
-			+"province_code text)";
+			+ "id integer primary key autoincrement, "
+			+ "province_name text, "
+			+ "province_code text)";
 	
 	/**
 	 * 创建City表
 	 */
 	public static final String CREAT_CITY="create table City ("
+			
 			+"id integer primary key autoincrement,"
 			+"city_name text,"
 			+"city_code text,"
-			+"province_id integer";
+			+"province_id integer)";
 	
 	/**
 	 * 创建Country表
@@ -39,7 +45,7 @@ public class ZQWeatherOpenHelper extends SQLiteOpenHelper {
 			+"id integer primary key autoincrement,"
 			+"country_name text,"
 			+"country_code text,"
-			+"city_id integer";
+			+"city_id integer)";
 	
 	 
 	@Override

@@ -99,7 +99,7 @@ public class ZQWeatherDB {
 	 */
 	public List<City> loadCity(int provinceId){
 		List<City> list = new ArrayList<City>();
-		Cursor cursor = db.query("City", null, null, null, null, null, null);
+		Cursor cursor = db.query("City", null, "province_id=?", new String[]{String.valueOf(provinceId)}, null, null, null);
 		if(cursor.moveToFirst()){
 			do{
 				City city = new City();
@@ -126,6 +126,26 @@ public class ZQWeatherDB {
 			db.insert("Country", null, values);
 		}
 	}
+	/**
+	 * 从数据库读取某城市下所有县信息
+	 */
+	public List<Country> loadCountry(int cityId){
+		List<Country> list = new ArrayList<Country>();
+		Cursor cursor = db.query("Country", null, "city_id=?", new String[]{String.valueOf(cityId)}, null, null, null);
+		if(cursor.moveToFirst()){
+			do{
+				Country country = new Country();
+				country.setId(cursor.getInt(cursor.getColumnIndex("id")));
+				country.setCountryCode(cursor.getString(cursor.getColumnIndex("country_code")));
+				country.setCountryName(cursor.getString(cursor.getColumnIndexOrThrow("country_name")));
+				country.setCityId(cityId);
+				list.add(country);
+			}while(cursor.moveToNext());
+			
+		}
+			return list;
+	}
+	
 }
 
 
